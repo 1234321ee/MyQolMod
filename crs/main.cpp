@@ -59,12 +59,12 @@ class $modify(MyPlayLayer, PlayLayer) {
 
         if (m_fpsLabel) {
             int fps = static_cast<int>(1.f / dt);
-            m_fpsLabel->setString(fmt::format("FPS: {}", fps).c_str());
+            m_fpsLabel->setString(("FPS: " + std::to_string(fps)).c_str());
         }
 
         if (m_attemptsLabel && this->m_level) {
             int attempts = this->m_level->m_attempts;
-            m_attemptsLabel->setString(fmt::format("Attempts: {}", attempts).c_str());
+            m_attemptsLabel->setString(("Attempts: " + std::to_string(attempts)).c_str());
         }
     }
 };
@@ -79,12 +79,11 @@ class $modify(MyPauseLayer, PauseLayer) {
         auto pl = PlayLayer::get();
         if (!pl || !pl->m_level) return;
 
-        // Безопасно переводим строку создателя в std::string
         std::string creator = pl->m_level->m_creatorName;
         if (creator.empty()) creator = "Unknown";
 
         auto label = CCLabelBMFont::create(
-            fmt::format("Creator: {}", creator).c_str(), 
+            ("Creator: " + creator).c_str(), 
             "bigFont.fnt"
         );
         label->setScale(0.5f);
@@ -98,8 +97,8 @@ class $modify(MyPauseLayer, PauseLayer) {
 // 3. ТЕКСТ ПРИ ПРОХОЖДЕНИИ УРОВНЯ
 // ============================================================
 class $modify(MyEndLevelLayer, EndLevelLayer) {
-    void showLayer() {
-        EndLevelLayer::showLayer();
+    void customSetup() {
+        EndLevelLayer::customSetup();
 
         bool isPractice = false;
         if (auto pl = PlayLayer::get()) {
