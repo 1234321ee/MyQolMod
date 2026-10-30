@@ -1,9 +1,12 @@
 {
-  "geode": "v5.0.0",
-  "gd": "2.2074",
-  "id": "GeometryPROshhk.qolmod",
-  "version": "v1.0.0",
-  "name": "My QoL Mod",
-  "developer": "GeometryPROshhk",
-  "description": "Test build."
+    "geode": "5.0.0",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074"
+    },
+    "id": "geometryproshhk.qolmod",
+    "version": "v1.0.0",
+    "name": "My QoL Mod",
+    "developer": "GeometryPROshhk",
+    "description": "Test build."
 }
