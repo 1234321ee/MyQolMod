@@ -79,6 +79,7 @@ class $modify(MyPauseLayer, PauseLayer) {
         auto pl = PlayLayer::get();
         if (!pl || !pl->m_level) return;
 
+        // Безопасно переводим строку создателя в std::string
         std::string creator = pl->m_level->m_creatorName;
         if (creator.empty()) creator = "Unknown";
 
@@ -97,8 +98,8 @@ class $modify(MyPauseLayer, PauseLayer) {
 // 3. ТЕКСТ ПРИ ПРОХОЖДЕНИИ УРОВНЯ
 // ============================================================
 class $modify(MyEndLevelLayer, EndLevelLayer) {
-    void customSetup() {
-        EndLevelLayer::customSetup();
+    void showLayer() {
+        EndLevelLayer::showLayer();
 
         bool isPractice = false;
         if (auto pl = PlayLayer::get()) {
